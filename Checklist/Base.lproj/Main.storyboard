@@ -17,14 +17,14 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="checkmark" indentationWidth="10" reuseIdentifier="ChecklistItem" id="pdk-FG-p9J">
-                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="28" width="375" height="43.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="pdk-FG-p9J" id="rEB-TY-LgO">
-                                    <rect key="frame" x="0.0" y="0.0" width="335" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="335" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" tag="1000" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4eG-Zo-YsH">
-                                            <rect key="frame" x="20" y="11" width="295" height="21.5"/>
+                                            <rect key="frame" x="20" y="11" width="295" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -81,6 +81,7 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="yes" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                                                     <connections>
+                                                        <action selector="done:" destination="fe3-Jy-YbM" eventType="editingDidEndOnExit" id="6Bd-CT-bYb"/>
                                                         <outlet property="delegate" destination="fe3-Jy-YbM" id="s6P-pA-GWI"/>
                                                     </connections>
                                                 </textField>
@@ -101,13 +102,15 @@
                                 <action selector="cancel:" destination="fe3-Jy-YbM" id="cUZ-H4-Y76"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Add" id="YT2-Ea-JsS">
+                        <barButtonItem key="rightBarButtonItem" enabled="NO" title="Add" springLoaded="YES" id="YT2-Ea-JsS">
                             <connections>
                                 <action selector="done:" destination="fe3-Jy-YbM" id="7aM-2f-Pkc"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="addBarButton" destination="YT2-Ea-JsS" id="13D-6S-LxI"/>
+                        <outlet property="cancelBarButton" destination="hAk-yS-oED" id="BNX-Q9-IsU"/>
                         <outlet property="textfield" destination="tjW-2D-iyi" id="swH-Vb-BkR"/>
                     </connections>
                 </tableViewController>

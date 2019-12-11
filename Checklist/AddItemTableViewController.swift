@@ -8,8 +8,17 @@
 
 import UIKit
 
-class AddItemTableViewController: UITableViewController {
+protocol addItemViewControllerDelegate: class {
+  func addItemViewControllerDidCancel(_ controller: AddItemTableViewController)
+  func addItemViewController(_ controller: AddItemTableViewController, didFinishAdding item: ChecklistItem)
+}
 
+class AddItemTableViewController: UITableViewController {
+  
+  weak var delegate: AddItemViewControllerDelegate?
+  
+  @IBOutlet weak var cancelBarButton: UIBarButtonItem!
+  @IBOutlet weak var addBarButton: UIBarButtonItem!
   @IBOutlet weak var textfield: UITextField!
   @IBAction func cancel(_ sender: Any) {
     navigationController?.popViewController(animated: true)
@@ -17,7 +26,7 @@ class AddItemTableViewController: UITableViewController {
   
   @IBAction func done(_ sender: Any) {
      navigationController?.popViewController(animated: true)
-    print("Contents of the text field \(textfield.text)")
+    //print("Contents of the text field \(textfield.text)")
   }
   
   override func viewDidLoad() {
@@ -39,5 +48,23 @@ class AddItemTableViewController: UITableViewController {
       textfield.resignFirstResponder()
       return false 
     }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+      
+      guard let oldText = textfield.text,
+          let stringRange = Range(range, in: oldText) else {
+        return false
+      }
+      
+      let newText = oldText.replacingCharacters(in: stringRange, with: string)
+      if newText.isEmpty {
+        addBarButton.isEnabled = false
+      } else {
+        addBarButton.isEnabled = true
+      }
+      return true
+    }
+    
+    
   }
 
